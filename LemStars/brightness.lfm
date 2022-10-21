@@ -1,0 +1,217 @@
+object BrightnessConvForm: TBrightnessConvForm
+  Left = 654
+  Height = 300
+  Top = 311
+  Width = 347
+  ActiveControl = MagSpin
+  BorderIcons = [biSystemMenu, biMaximize]
+  BorderStyle = bsDialog
+  Caption = 'Convert star brightness and colour'
+  ClientHeight = 300
+  ClientWidth = 347
+  Position = poScreenCenter
+  LCLVersion = '1.8.4.0'
+  object ColorPanel: TPanel
+    Left = -4
+    Height = 80
+    Top = 160
+    Width = 360
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    ClientHeight = 80
+    ClientWidth = 360
+    TabOrder = 4
+    object Label5: TLabel
+      Left = 20
+      Height = 15
+      Top = 27
+      Width = 31
+      Caption = '&B–V ='
+      FocusControl = CISpin
+      ParentColor = False
+    end
+    object Label7: TLabel
+      Left = 307
+      Height = 15
+      Top = 27
+      Width = 7
+      Caption = '&K'
+      FocusControl = TempSpin
+      ParentColor = False
+    end
+    object CISpin: TFloatSpinEdit
+      Left = 59
+      Height = 23
+      Top = 24
+      Width = 104
+      Alignment = taRightJustify
+      Increment = 0.1
+      MaxValue = 2.5
+      MinValue = -0.3
+      OnChange = CISpinChange
+      TabOrder = 0
+      Value = 0
+    end
+    object TempSpin: TSpinEdit
+      Left = 196
+      Height = 23
+      Top = 24
+      Width = 104
+      Alignment = taRightJustify
+      Increment = 100
+      MaxValue = 15115
+      MinValue = 2538
+      OnChange = TempSpinChange
+      TabOrder = 1
+      Value = 15115
+    end
+    object Label6: TLabel
+      Left = 185
+      Height = 15
+      Top = 27
+      Width = 8
+      Caption = '~'
+      ParentColor = False
+    end
+    object DubiousLabel: TLabel
+      Left = 196
+      Height = 15
+      Top = 52
+      Width = 104
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'dubious!'
+      ParentColor = False
+    end
+  end
+  object CancelBtn: TBitBtn
+    Left = 192
+    Height = 33
+    Top = 256
+    Width = 104
+    Cancel = True
+    Caption = '&Close'
+    Default = True
+    Kind = bkClose
+    ModalResult = 11
+    TabOrder = 5
+  end
+  object MagSpin: TFloatSpinEdit
+    Left = 55
+    Height = 23
+    Top = 22
+    Width = 104
+    Alignment = taRightJustify
+    Increment = 0.1
+    MaxValue = 8
+    MinValue = -4.18
+    OnChange = MagSpinChange
+    TabOrder = 0
+    Value = 0
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 15
+    Top = 25
+    Width = 25
+    Caption = '&mᵣ ='
+    FocusControl = MagSpin
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 304
+    Height = 15
+    Top = 25
+    Width = 16
+    Caption = '&nlx'
+    FocusControl = LuxSpin
+    ParentColor = False
+  end
+  object LuxSpin: TSpinEdit
+    Left = 192
+    Height = 23
+    Top = 22
+    Width = 104
+    Alignment = taRightJustify
+    Increment = 10
+    MaxValue = 100000
+    MinValue = 1
+    OnChange = LuxSpinChange
+    TabOrder = 1
+    Value = 1
+  end
+  object Label3: TLabel
+    Left = 16
+    Height = 15
+    Top = 80
+    Width = 107
+    Caption = '&Lemizh brightness ='
+    FocusControl = LMagSpin
+    ParentColor = False
+  end
+  object LMagSpin: TFloatSpinEdit
+    Left = 55
+    Height = 23
+    Top = 105
+    Width = 104
+    Alignment = taRightJustify
+    Increment = 0.1
+    MaxValue = 13.89
+    MinValue = -2.17
+    OnChange = LMagSpinChange
+    TabOrder = 2
+    Value = 0
+  end
+  object GomysSpin: TSpinEdit
+    Left = 192
+    Height = 23
+    Top = 105
+    Width = 104
+    Alignment = taRightJustify
+    Increment = 10
+    MaxValue = 124052432
+    MinValue = 1666
+    OnChange = GomysSpinChange
+    TabOrder = 3
+    Value = 31743
+  end
+  object Label4: TLabel
+    Left = 304
+    Height = 15
+    Top = 108
+    Width = 24
+    Caption = '&g°/♁'
+    FocusControl = GomysSpin
+    ParentColor = False
+  end
+  object GomysHexLabel: TLabel
+    Left = 184
+    Height = 15
+    Top = 135
+    Width = 104
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'GomysHexLabel'
+    ParentColor = False
+  end
+  object LMagHexLabel: TLabel
+    Left = 48
+    Height = 15
+    Top = 135
+    Width = 104
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'LMagHexLabel'
+    ParentColor = False
+  end
+  object FaintLabel: TLabel
+    Left = 16
+    Height = 15
+    Top = 52
+    Width = 280
+    AutoSize = False
+    Font.Color = clRed
+    ParentColor = False
+    ParentFont = False
+  end
+end
