@@ -58,8 +58,8 @@ function sizeSky(changeSizing = false) {
 </head>
 
 <body <?php if (isset($_GET['star'])) echo 'onLoad="changeStar('.(int)$_GET['star'].', true)"' ?> onScroll="scrollMain()" onResize="sizeSky()">
-<form id="search" method="get" action="../search.php" title="Search the Lemizh website" onFocusin="focusSearch()">
-<input type="text" name="q" placeholder="Search site">
+<form id="search" method="get" action="../search.php" title="Search the Lemizh website">
+<input type="text" name="q" placeholder="Search site" onFocus="focusSearch()">
 <button>🔎</button>
 </form>
 <header><a href=".." rel="index" title="Home"><span lang="x-lm">lemÌc.</span> Lemizh grammar and dictionary</a></header>
@@ -88,14 +88,16 @@ function sizeSky(changeSizing = false) {
 
 <main id="main" onScroll="scrollMain()">
 <?php
-if ($constellId>0) echo constellInfo($constellId, false)."\n\n"; else echo '<h2 id="top">Constellation doesn’t exist</h2><p></p>'."\n\n";
+$info = constellInfo($constellId, false);
+if ($constellId>0) {
+  echo $info[0]."\n\n";
+  echo "<div id=\"sky-wrapper\">\n<script>\ndocument.write('<a id=\"enlarge\" onClick=\"sizeSky(true)\"></a>');\n</script>\n".'<iframe id="sky" src="constell/webgl.php?width=600&amp;c='.$constellId.'&amp;zoom=1.8&amp;mode=1" width="600" height="600"></iframe>'."\n</div>\n\n";
+  echo $info[1];
+} else echo '<h2 id="top">Constellation doesn’t exist</h2><p></p>'."\n\n";
+
 $name = dictEntry($constellId);
 $accentedName = substr_replace($name, 'à', strrpos($name, 'a'), 1);
 if ($constellId>0) echo '<p>See also <a href="../le.php?'.$name.'" lang="x-lm" title="'.lemtitle($accentedName).'">'.$accentedName.'</a> in the dictionary.</p>'."\n\n";
-
-echo "<div id=\"sky-wrapper\">\n<script>\ndocument.write('<a id=\"enlarge\" onClick=\"sizeSky(true)\"></a>');\n</script>\n";
-if ($constellId>0) echo '<iframe id="sky" src="constell/webgl.php?width=600&amp;c='.$constellId.'&amp;zoom=1.8&amp;mode=1" width="600" height="600"></iframe>';
-echo "\n</div>\n\n";
 
 $goBack = '<p style="margin-top: 2em"><a href="constell.php?c='.$constellId.'#coinfo" rel="prev">Back to the overview</a></p>'."\n";
 echo $goBack;
@@ -122,13 +124,7 @@ if ($constellId>0) for ($i = 0; $i<sizeof($starLemNumbers); $i++) if ($starLemCo
   } else ++$unnumbered;
 }
 ksort($rows);
-?>
 
-<div><img src="../images/construct.png" width="147" alt="Under construction"><br>
-The constellation descriptions are under construction.<br>
-Please have patience!</div>
-
-<?php
 if ($constellId>0) {
   echo '<h3 id="stars">The '.sizeof($rows).($unnumbered>0 ? ' numbered' : '').' naked-eye stars</h3>'."\n";
   echo '<p>In the ‘Our designation’ column, letters (sometimes with superscript numbers) in front of constellation symbols refer to Bayer’s catalogue or to <a href="https://en.wikipedia.org/wiki/Variable_star_designation" title="Wikipedia: Variable star designation" rel="external">variable star designations</a>, and numbers to Flamsteed’s catalogue. Row colours roughly approximate the stars’ colours. The links lead to the stars’ entries in the <abbr title="Set of Identifications, Measurements and Bibliography for Astronomical Data">SIMBAD</abbr> Astronomical Database.</p>'."\n";
@@ -146,7 +142,7 @@ if ($constellId>0) {
 
 <a href="#top" onClick="scrollToTop()" id="totop" title="Go to top"></a>
 <footer>
-<p>Last significant change to this page: 27 Aug 2022<br>
+<p>Last significant change to this page: 17 Nov 2022<br>
 Last change to the database: <?php echo $modified ?></p>
 <div><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="linkimage" rel="external license" title="Available under a Creative Commons licence"><img src="../images/cc.svg" width="88" height="31" alt="Creative Commons BY-SA License"></a>&emsp;<a href="https://validator.w3.org/check/referer" referrerpolicy="no-referrer-when-downgrade" class="linkimage" rel="external" title="Check HTML 5"><img src="../images/html5.svg" width="27" height="38" alt="Check HTML 5"></a>&nbsp;<a href="https://jigsaw.w3.org/css-validator/check/referer" referrerpolicy="no-referrer-when-downgrade" class="linkimage" rel="external" title="Check CSS 3"><img src="../images/css3.svg" width="27" height="38" alt="Check CSS 3"></a><br>
 See <a href="../home/terms.html">Terms of use</a> for details on copyright and licensing.</div>

@@ -58,9 +58,9 @@ $constellId = getConstellId($_GET['c']);
 echo "const constellDescr = [\n";
 $constellDescr = '';
 for ($n = 0; $n<count($constells); $n++) {
-  $descr = constellInfo($n+1, true);
-  if ($n==$constellId-1) $constellDescr = $descr;
-  echo "'".$descr."',\n";
+  $info = implode(constellInfo($n+1, true));
+  if ($n==$constellId-1) $constellDescr = $info;
+  echo "'".$info."',\n";
 }
 echo "];\n";
 ?>
@@ -98,8 +98,8 @@ function sizeSky(changeSizing = false) {
 </head>
 
 <body onScroll="scrollMain()" onResize="sizeSky()">
-<form id="search" method="get" action="../search.php" title="Search the Lemizh website" onFocusin="focusSearch()">
-<input type="text" name="q" placeholder="Search site">
+<form id="search" method="get" action="../search.php" title="Search the Lemizh website">
+<input type="text" name="q" placeholder="Search site" onFocus="focusSearch()">
 <button>🔎</button>
 </form>
 <header><a href=".." rel="index" title="Home"><span lang="x-lm">lemÌc.</span> Lemizh grammar and dictionary</a></header>
@@ -132,10 +132,6 @@ function sizeSky(changeSizing = false) {
 <p><a rel="external" href="https://www.youtube.com/watch?v=rEeiRXOlWUE" onClick="showStarMachine()">☆</a></p>
 <footer>(Wintergatan. <cite>Starmachine2000</cite>)</footer>
 </blockquote>
-
-<div class="float"><img src="../images/construct.png" width="147" alt="Under construction"><br>
-The constellation descriptions are under construction.<br><!-- ALSO REMOVE FROM CONSTELLN.PHP ! -->
-Please have patience!</div>
 
 <p>The constellations used in the Lemizh world are ultimately based on the ancient Greek ones, resulting in overlaps with ours. Some, however, including the ones too far south to be visible from the Mediterranean, were named in the 13<sup>th</sup> and 14<sup>th</sup> centuries (of our calendar) and are unrelated to our tradition.</p>
 <p>The stars in each constellation are numbered, with the brightest stars (brighter than an apparent magnitude of about 4, which corresponds to a Lemizh star brightness of 3) having mostly one-digit numbers, and stars visible to the naked eye under very good conditions (magnitude ~6.3, Lemizh brightness zero) having at most two digits.</p>
@@ -179,10 +175,12 @@ if ($constellId>0) {
 ?></div></div>
 </div>
 
+<p class="rem"><span title="Remark."></span> The source code for the sky sphere is available at <a rel="external" href="https://github.com/Anypodetos/Lemizh-Constellations">GitHub</a>.</p>
+
 <p id="forward"><a href="pragmatics.php" rel="next" title="A sketch of pragmatics I. Relevance">A sketch of pragmatics I</a></p>
 <a href="#top" onClick="scrollToTop()" id="totop" title="Go to top"></a>
 <footer>
-<p>Last significant change to this page: 18 Apr 2022<br>
+<p>Last significant change to this page: 21 Oct 2022<br>
 Last change to the database: <?php echo $modified ?></p>
 <div><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="linkimage" rel="external license" title="Available under a Creative Commons licence"><img src="../images/cc.svg" width="88" height="31" alt="Creative Commons BY-SA License"></a>&emsp;<a href="https://validator.w3.org/check/referer" referrerpolicy="no-referrer-when-downgrade" class="linkimage" rel="external" title="Check HTML 5"><img src="../images/html5.svg" width="27" height="38" alt="Check HTML 5"></a>&nbsp;<a href="https://jigsaw.w3.org/css-validator/check/referer" referrerpolicy="no-referrer-when-downgrade" class="linkimage" rel="external" title="Check CSS 3"><img src="../images/css3.svg" width="27" height="38" alt="Check CSS 3"></a><br>
 See <a href="../home/terms.html">Terms of use</a> for details on copyright and licensing.</div>
