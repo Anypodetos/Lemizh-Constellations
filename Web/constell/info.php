@@ -3,11 +3,13 @@ function lemtitle($str) {
   return str_replace(['Ì','O','Ò','Ó','U','Ù','Ú','h', 'j', 'c', 'v', 'q', 'n', 'R'],
                      ['ỳ','ö','ö̀','ö́','ü','ǜ','ǘ','sh','gh','zh','dh','th','ng','rh'], $str);
 }
+
 function dictEntry($constellId) {
   include 'constelllist.php';
   $dict = $constells[$constellId-1][2];
   if ($dict) return $dict; else return str_replace(['à', 'è', 'Ì', 'ì', 'ò', 'ù', 'Ò', 'Ù'], 'a', $constells[$constellId-1][1]);
 }
+
 function constellInfo($constellId, $fromMain) {
   include 'stardata.php';
   include 'constelllist.php';
@@ -35,9 +37,9 @@ function constellInfo($constellId, $fromMain) {
 
   if (!$s && $c) $s = 'There is no information on the '.$c[0].' yet.';
 
-  return ($fromMain ? '<h3>' : '<h2 id="top">Constellation ').$c[0].($c[1] ? ' (<span lang="x-lm" title="'.lemtitle($c[1]).'">'.$c[1].'</span>)' : '')
-    .($fromMain ? '&emsp;<small><a href="constelln.php?c='.$constellId.'" title="Go to this constellation’s page">►</a></small>' : '').($fromMain ? "</h3>" : "</h2>\n").'<p>'
-    .str_replace(['¶', ']]', '}}'], ['</p><p>', '</a>', $fromMain ? '' : '</span>'], $s)."</p>";
+  return [($fromMain ? '<h3>' : '<h2 id="top">Constellation ').$c[0].($c[1] ? ' (<span lang="x-lm" title="'.lemtitle($c[1]).'">'.$c[1].'</span>)' : '')
+    .($fromMain ? '&emsp;<small><a href="constelln.php?c='.$constellId.'" title="Go to this constellation’s page">►</a></small>' : '').($fromMain ? "</h3>" : "</h2>\n"),
+    '<p>'.str_replace(['¶', ']]', '}}'], ['</p><p>', '</a>', $fromMain ? '' : '</span>'], $s)."</p>"];
 }
 
 function getConstellId($id) {
