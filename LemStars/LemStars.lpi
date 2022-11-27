@@ -22,7 +22,7 @@
       <MinorVersionNr Value="29"/>
       <RevisionNr Value="2"/>
       <Language Value="0809"/>
-      <StringTable CompanyName="TESSoft Inc." FileDescription="Lemizh Stars" InternalName="LemStars" LegalCopyright="CC BY-NC-ND" LegalTrademarks="The language Lemizh was invented by Anypodetos." OriginalFilename="LemStars.exe" ProductName="Lemizh Stars" ProductVersion="3"/>
+      <StringTable CompanyName="TESSoft Inc." FileDescription="Lemizh Stars" InternalName="LemStars" LegalCopyright="GPL 3.0" LegalTrademarks="The language Lemizh was invented by Anypodetos." OriginalFilename="LemStars.exe" ProductName="Lemizh Stars" ProductVersion="3"/>
     </VersionInfo>
     <BuildModes Count="2">
       <Item1 Name="Debug" Default="True"/>
