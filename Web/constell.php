@@ -140,8 +140,8 @@ function sizeSky(changeSizing = false) {
 
 <table class="x exa"><!-- Examples: Stars -->
 <tr><th rowspan="2" title="Example."></th>
-<td lang="x-lm" title="‘D’ǜ fxỳzhor.">&lt;D&gt;Ù fxÌcor.</td><td class="literal">[star] <a href="../tutorial/8.html#numbering" title="Numbering">number</a> 13 in the Dragon</td><td>Beta Ursae Minoris (Kochab)</td></tr>
-<tr><td colspan="3" class="igloss">‘13’-<abbr class="gloss" title="benefactive">ben</abbr><sup>1</sup> dragon-<abbr class="gloss" title="accusative">acc</abbr>-<abbr class="gloss" title="scenic">sce</abbr><sup>2</sup>.</td></tr>
+<td lang="x-lm" title="‘E’ǜ fxỳzhor.">&lt;E&gt;Ù fxÌcor.</td><td class="literal">[star] <a href="../tutorial/8.html#numbering" title="Numbering">number</a> 14 in the Dragon</td><td>Beta Ursae Minoris (Kochab)</td></tr>
+<tr><td colspan="3" class="igloss">‘14’-<abbr class="gloss" title="benefactive">ben</abbr><sup>1</sup> dragon-<abbr class="gloss" title="accusative">acc</abbr>-<abbr class="gloss" title="scenic">sce</abbr><sup>2</sup>.</td></tr>
 </table>
 
 <p>Designations for fainter stars have three or more digits, and those for nonstellar objects include a letter for the object type plus one or more digits, again depending on brightness.</p>
