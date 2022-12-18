@@ -63,6 +63,9 @@ echo "];\n\n";
 
 $mode = max(min((int)$_GET['mode'], 1), 0);
 echo "const mode = ".$mode.";\n";
+$lemNumbers = $_GET['lemNumbers'] > 0;
+echo "const lemNumbers = ".($lemNumbers ? "true" : "false").";\n";
+
 $width  = (int)$_GET['width'];
 $height = (int)$_GET['height'];
 if ($width <=1) $width = 800;
@@ -472,8 +475,11 @@ const starsAttrib = makeAttribute(stars),
 
 const numbersTilesAttrib = makeAttribute([0,0,0,0, 0,-50,0,0, 25,0,0,0, 25,-50,0,0]), numbersTexCoordsAttrib = [];
 for (var i = 0; i<16; i++) numbersTexCoordsAttrib[i] = makeAttribute(
-    [25*(i<10 ? i : i-10)/256,        (i<10 ? 0 : 61)/256, 25*(i<10 ? i : i-10)/256,        (i<10 ? 0 : 61)/256+22/128,
-     25*(i<10 ? i : i-10)/256+11/128, (i<10 ? 0 : 61)/256, 25*(i<10 ? i : i-10)/256+11/128, (i<10 ? 0 : 61)/256+22/128]);
+    [25*(i<10 ? i : i-10)/256,        (i<10 ?   0 :  61)/256, 25*(i<10 ? i : i-10)/256,        (i<10 ?   0 :  61)/256+22/128,
+     25*(i<10 ? i : i-10)/256+11/128, (i<10 ?   0 :  61)/256, 25*(i<10 ? i : i-10)/256+11/128, (i<10 ?   0 :  61)/256+22/128]);
+for (var i = 0; i<16; i++) numbersTexCoordsAttrib[i+16] = makeAttribute(
+    [25*(i<10 ? i : i-10)/256,        (i<10 ? 128 : 189)/256, 25*(i<10 ? i : i-10)/256,        (i<10 ? 128 : 189)/256+22/128,
+     25*(i<10 ? i : i-10)/256+11/128, (i<10 ? 128 : 189)/256, 25*(i<10 ? i : i-10)/256+11/128, (i<10 ? 128 : 189)/256+22/128]);
 
 gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
@@ -594,14 +600,15 @@ if (mode==1 && constellId>0) {
   gl.activeTexture(gl.TEXTURE0);
   gl.bindTexture(gl.TEXTURE_2D, numbersTexture);
   const limit = Math.min(5-zoom*height/600, 3);
+  const lemNumberOffset = lemNumbers ? 16 : 0;
   for (var j = 0; j<2; j++) for (var i = 0; i<starSizes.length; i++) if (starLemConstells[i]==constellId && starLemNumbers[i]>0 && starSizes[i]>=limit) {
     gl.uniform3f(gl.getUniformLocation(numbersProgram, 'star'), stars[3*i], stars[3*i+1], stars[3*i+2]);
-    enableAttribute(numbersProgram, 'texture', numbersTexCoordsAttrib[starLemNumbers[i]>15 ? Math.floor(starLemNumbers[i]/16) : starLemNumbers[i]], 2);
+    enableAttribute(numbersProgram, 'texture', numbersTexCoordsAttrib[(starLemNumbers[i]>15 ? Math.floor(starLemNumbers[i]/16) : starLemNumbers[i])+lemNumberOffset], 2);
     var sizeOffset = starSizes[i]*sqrtZoom-5;
     gl.uniform1f(gl.getUniformLocation(numbersProgram, 'offset'), sizeOffset);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     if (starLemNumbers[i]>15) {
-      enableAttribute(numbersProgram, 'texture', numbersTexCoordsAttrib[starLemNumbers[i]%16], 2);
+      enableAttribute(numbersProgram, 'texture', numbersTexCoordsAttrib[starLemNumbers[i]%16 +lemNumberOffset], 2);
       gl.uniform1f(gl.getUniformLocation(numbersProgram, 'offset'), sizeOffset+17);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
